@@ -36,7 +36,37 @@ export default class ArrayList<T> {
         this.array[0] = item;
     }
 
-    insertAt(item: T, idx: number): void {}
+    insertAt(item: T, idx: number): void {
+        // CHAT GPT IMPLEMENTATION //
+        if (idx < 0 || idx > this.length) {
+            throw new Error("Index out of bounds.");
+        }
+
+        if (this.length === this.capacity) {
+            this.capacity = this.capacity * 2;
+            const newArray = new Array(this.capacity);
+
+            for (let i = 0; i < idx; i++) {
+                newArray[i] = this.array[i];
+            }
+
+            newArray[idx] = item;
+
+            for (let i = idx; i < this.length; i++) {
+                newArray[i + 1] = this.array[i];
+            }
+
+            this.array = newArray;
+        } else {
+            for (let i = this.length; i > idx; i--) {
+                this.array[i] = this.array[i - 1];
+            }
+
+            this.array[idx] = item;
+        }
+
+        this.length++;
+    }
 
     append(item: T): void {
         this.length++;
@@ -65,7 +95,7 @@ export default class ArrayList<T> {
                 removedIdx = i;
                 break;
             }
-        }				
+        }
 
         if (removedIdx !== undefined) {
             return this.removeAt(removedIdx);
@@ -79,8 +109,8 @@ export default class ArrayList<T> {
     }
 
     removeAt(idx: number): T | undefined {
-        if (idx >= this.length) {
-            return undefined;
+        if (idx < 0 || idx >= this.length) {
+            throw new Error("Index out of bounds.");
         }
 
         const value = this.array[idx];
