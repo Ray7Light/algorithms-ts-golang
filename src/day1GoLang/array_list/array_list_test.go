@@ -5,7 +5,7 @@ import (
 )
 
 func TestArrayList(t *testing.T) {
-	list := &ArrayList{list: [1]int{} }
+	list := &ArrayList{}
 
 	list.append(5)
 	list.append(7)
@@ -19,8 +19,8 @@ func TestArrayList(t *testing.T) {
 
 	removeAtAndCheck(t, list, 1, 9)
 
-	if _, err := list.remove(9); err != "index out of bounds" {
-		t.Errorf("should throw error 'index out of bounds'")
+	if _, err := list.remove(9); err.Error() != "value not found" {
+		t.Errorf("should throw error 'value not found'")
 	}
 
 	removeAtAndCheck(t, list, 0, 5)
