@@ -37,7 +37,8 @@ func TestMazeSolver(t *testing.T) {
 	start := Point{x: 10, y: 0}
 	end := Point{x: 1, y: 5}
 
-	result := MazeSolver(maze, "x", start, end)
+	solution := MazeSolver(maze, "x", start, end)
+	result := drawPath(maze, solution)
 	expected := drawPath(maze, mazeResult)
 
 	if reflect.DeepEqual(result, expected) == false {
