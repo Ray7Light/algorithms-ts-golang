@@ -22,9 +22,10 @@ function partition(arr: number[], lo: number, hi: number): number {
 			arr[idx] = tmp;
 		}
 	}
-
+ 
 	idx++;
-	arr[hi] = arr[idx];
+	// swap pivot value so that everything to the left is less than pivot value.
+	arr[hi] = arr[idx]; 
 	arr[idx] = pivot;
 
 	return idx;
