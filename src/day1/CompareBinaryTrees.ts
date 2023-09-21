@@ -8,7 +8,7 @@ export default function compare(a: BinaryNode<number> | null, b: BinaryNode<numb
 		return false;
 	}
 
-	if (a.?value !== b?.value) {
+	if (a?.value !== b?.value) {
 		return false;
 	}
 
